@@ -2,10 +2,28 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { HeaderBar } from './features/headerBar/headBar.js';
+import './style.css';
+import {Categories} from './features/categories/categories.js';
+import { Posts } from './features/posts/posts.js';
+import { Subreddits } from './features/subreddits/subreddits.js';
+
+
+
 
 function App() {
   return (
     <div className="App">
+      <HeaderBar/>
+      <main>
+        <Categories />
+        <Posts />
+      </main>
+      <aside>
+        <Subreddits />
+      </aside>
+
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
