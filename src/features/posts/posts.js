@@ -1,22 +1,27 @@
 import {Tile} from '../../components/postTile.js';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadData, selectAllPosts } from './postsSlice.js';
+import { selectAllPosts, postsSlice, loadPosts } from './postsSlice.js';
 
 export const Posts = () => {
     const dispatch = useDispatch();
-    const allPostss = useSelector(selectAllPosts);
+    const allPostsS = useSelector(selectAllPosts);
+    const allPosts = useSelector((state)=> state.allPosts);
+    const { isLoading, hasError,selectedSubreddit } = allPosts;
+    useEffect(() => {
+        dispatch(loadPosts(selectedSubreddit))},[dispatch]
+        );
 
-  const  onFirstRender = () => {
-        dispatch(loadData())
-    }
+console.log(hasError);
+console.log(allPostsS);
+    
 
-    useEffect(onFirstRender);
-
-
+if (isLoading) {
+    return <p>Loadin...</p>
+}
     return (
         <div>
-                {allPostss.map((post) =>(
+                {allPostsS.map((post) =>(
                     <Tile key = {post.id} content = {post} />
                 )  )}
             
