@@ -32,10 +32,24 @@ export const loadPosts = createAsyncThunk(
   async(subreddit) => {
     const response = await fetch(`${API_ROOT}${subreddit}.json`);
     const json = await response.json();
-    return json;
+  //  console.log(json);
+    const postData = json.data.children.map((post)=> {
+      const { subreddit_name_prefixed, author, num_comments, title, id } = post.data;
+      let img = post.data.url;
+      return {
+        author,
+        subreddit: subreddit_name_prefixed,
+        title: title,
+        num_comments,
+        image: img,
+        id,
+      }
+    })
+
+    return postData;
   }
 );
-
+ 
 
 
 const initialSatate = {

@@ -16,7 +16,7 @@
     align-items: center;
     height: 4rem;
     opacity: .6;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     z-index: 9;
   }
@@ -26,4 +26,8 @@
     max-height: 2.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
+  }
+  
+  aside {
+    float: right;
   }
