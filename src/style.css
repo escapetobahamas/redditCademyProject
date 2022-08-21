@@ -31,3 +31,7 @@
   aside {
     float: right;
   }
+
+  main {
+    max-width: 50%;
+  }

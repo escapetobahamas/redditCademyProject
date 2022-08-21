@@ -34,7 +34,7 @@ export const loadPosts = createAsyncThunk(
     const json = await response.json();
   //  console.log(json);
     const postData = json.data.children.map((post)=> {
-      const { subreddit_name_prefixed, author, num_comments, title, id } = post.data;
+      const { subreddit_name_prefixed, author, num_comments, title, id, ups } = post.data;
       let img = post.data.url;
       return {
         author,
@@ -43,6 +43,7 @@ export const loadPosts = createAsyncThunk(
         num_comments,
         image: img,
         id,
+        ups
       }
     })
 
@@ -68,6 +69,11 @@ export const postsSlice = createSlice({
         // loadPosts: (state, action) => {
         //  return [...state, action.payload]
         // }
+        setSubreddit:(state, action) => {
+         
+            state.selectedSubreddit = action.payload;
+         
+        }
     },
     extraReducers: {
       [loadPosts.pending]: (state, action) =>{
@@ -101,5 +107,6 @@ export const postsSlice = createSlice({
 
 
 export const selectAllPosts = (state) => state.allPosts.posts;
+export const { setSubreddit } = postsSlice.actions;
 export default postsSlice.reducer;
 

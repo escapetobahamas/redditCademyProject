@@ -2,6 +2,7 @@ import React, { useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Tile } from '../../components/postTile.js';
 import { selectSubreddits, loadSubreddits } from "./subredditSlice";
+import  { setSubreddit } from '../posts/postsSlice.js'
 
 export const Subreddits = () => {
     const dispatch = useDispatch();
@@ -16,10 +17,24 @@ export const Subreddits = () => {
 
     return (
         <div>
-            {subreddits.map((subreddit, index)=> {
-                return <Tile key = {index} content = {subreddit} name = "subreddit" />
+            <Tile  className = "subredditTile">
+                <h2>Subreddits</h2>
+                <ul>
+                    {subreddits.map((subreddit, index)=> {
+                    return <li key = {subreddit.id} >
+                            <button type = 'button' onClick = {()=>dispatch(setSubreddit(subreddit.url))}>
+                                <img src = {subreddit.image} alt = 'img'/>
+                                {subreddit.title}
+                            </button>
+
+                        </li>
+                    })}
+                </ul>
+            
                 
-            })}
+           
+     
+            </Tile>
             
         </div>
     )

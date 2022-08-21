@@ -14,7 +14,7 @@ export const loadSubreddits = createAsyncThunk(
     async () => {
         const response = await fetch(API_ROOT);
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         const redditData = json.data.children.map((subreddit)=> {
                 const { display_name_prefixed,
                     url,

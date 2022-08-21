@@ -2,6 +2,7 @@ import {Tile} from '../../components/postTile.js';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllPosts, postsSlice, loadPosts } from './postsSlice.js';
+import './stylePost.css';
 
 export const Posts = () => {
     const dispatch = useDispatch();
@@ -24,7 +25,26 @@ export const Posts = () => {
     return (
         <div>
             {allPosts.posts.map((post, index) => {
-                return <Tile key = {index} content = {post} name = "post"/>
+                return <Tile key = {index} content = {post} className = "post">
+                    {post.title}
+                    
+                    <button className='voteUp' type = 'button'>
+                                Up
+                    </button>
+                    <p>
+                        {post.ups}
+                    </p>
+                    <button className = 'voteDown' type = 'button'>
+                                    Down
+                    </button>
+                    <img src = {post.image} alt = 'img' />
+                     <span className='postComments'>
+                        <button type = 'button'>
+                            Comments
+                        </button>
+                        {post.num_comments}
+                     </span>
+                </Tile>
                 
             })}
         </div>
